@@ -38,9 +38,9 @@
        - using macro to bulk rename
    - recommendations
      - I have my ranger equipped with a keybinding
-     #+BEGIN_SRC shell
-     map mpo shell mv -v %s /**/project-folder && cd /**/project-folder && ./org-lit-sync %s
-     #+END_SRC
+       #+BEGIN_SRC shell
+       map mpo shell mv -v %s /**/project-folder && cd /**/project-folder && ./org-lit-sync %s
+       #+END_SRC
        so that the flow goes as
        - download the pdf
        - change the name following the pattern
