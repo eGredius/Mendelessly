@@ -33,18 +33,17 @@
        "Unread" heading
      - create a org link to open the pdf
      - sort all the unread papers chronically
-       - if you want to sort papers by author name, just bulk name the
-         papers with format: "author-year-title.pdf"
-       - using macro to bulk rename
+       * if you want to sort papers by author name, just bulk name the
+         papers with format: "author-year-title.pdf" (using macro to bulk rename)
    - recommendations
      - I have my ranger equipped with a keybinding
        #+BEGIN_SRC shell
        map mpo shell mv -v %s /**/project-folder && cd /**/project-folder && ./org-lit-sync %s
        #+END_SRC
        so that the flow goes as
-       - download the pdf
-       - change the name following the pattern
-       - call the ranger keybinding
-       - and it's ready in the .org file with unread heading and
+       1. download the pdf
+       2. change the name following the pattern
+       3. call the ranger keybinding
+       4. and it's ready in the .org file with unread heading and
          well-sorted
      - You can of course use shell aliases or something like that
