@@ -7,7 +7,7 @@
   being used, allowing them to work with other markup formats should
   be trivial to achieve with zero to a small number of
   modifications. That said, emacs/org-mode offers an insanely
-  efficient system for editing, organizing, note-taking, aso, which is
+  efficient system for editing, organizing, note-taking, ASO, which is
   the only reason for these scripts to be marginally yet
   significantly useful, as far as I can tell.
 
