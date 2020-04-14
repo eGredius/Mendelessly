@@ -1,2 +1,0 @@
-# Mendelessly
-academic literature management

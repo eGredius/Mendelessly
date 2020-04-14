@@ -1,0 +1,38 @@
+* "Mendelessly"
+  My academic literature management (reading, organizing, note-taking).
+
+* Softwares
+  Although all the scripts are (technically "IS" at the moment, I
+  know) and will be written with the assumption that emacs/org-mode is
+  being used, allowing them to work with other markup formats should
+  be trivial to achieve with zero to a small number of
+  modifications. That said, emacs/org-mode offers an insanely
+  efficient system for editing, organizing, note-taking, aso, which is
+  the only reason for these scripts to be marginally yet
+  significantly useful, as far as I can tell.
+
+  Now here are the softwares I use for literature management in a
+  daily basis:
+** editor: emacs, especially org-mode 
+** file manager: ranger (optional)
+** pdf reader: zathura (optional) 
+
+* Usage
+** org-lit-sync
+   - a project folder
+     - literature pdf's
+     - org-lit-sync
+     - a .org file with the last heading as "Unread" (you might wanna
+       check out [[https://www.youtube.com/watch?v=LFO2UbzbZhA][this video]] to get the hang)
+   - run the script with the new added pdf as the single argument
+     #+BEGIN_SRC shell
+     ./org-lit-sync year-author-title.pdf
+     #+END_SRC
+     it will
+     - append the new pdf at the bottom of the .org file under the
+       "Unread" heading
+     - create a org link to open the pdf
+     - sort all the unread papers chronically
+       - if you want to sort papers by author name, just bulk name the
+         papers with format: "author-year-title.pdf"
+       - using macro to bulk rename
