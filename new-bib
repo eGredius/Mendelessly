@@ -1,0 +1,148 @@
+#!/bin/sh
+
+LIT_TYPE=$1
+BIB_FILE=$(ls -l | awk -F' ' '/\.bib/ {print $9}')
+
+new_paper() {
+	echo
+	echo "------"
+	echo "|Tag?|"
+	echo "------"
+	echo
+	read tag
+	echo -e "\n@ARTICLE{${tag}," >> $BIB_FILE
+	echo
+	echo "---------"
+	echo "|Author?|"
+	echo "---------"
+	echo
+	read author
+	echo "  author =       {${author}}," >> $BIB_FILE
+	echo
+	echo "--------"
+	echo "|Title?|"
+	echo "--------"
+	echo
+	read title
+	echo "  title =        {${title}}," >> $BIB_FILE
+	echo
+	echo "----------"
+	echo "|Journal?|"
+	echo "----------"
+	echo
+	read journal
+	echo "  journal =      {${journal}}," >> $BIB_FILE
+	echo
+	echo "---------"
+	echo "|Volume?|"
+	echo "---------"
+	echo
+	read volume
+	echo "  volume =       {${volume}}," >> $BIB_FILE
+	echo
+	echo "---------"
+	echo "|Number?|"
+	echo "---------"
+	echo
+	read number
+	echo "  number =       {${number}}," >> $BIB_FILE
+	echo
+	echo "-------"
+	echo "|Year?|"
+	echo "-------"
+	echo
+	read year
+	echo "  year =         {${year}}," >> $BIB_FILE
+	echo
+	echo "--------"
+	echo "|Pages?|"
+	echo "--------"
+	echo
+	read pages
+	echo "  pages =        {${pages}}," >> $BIB_FILE
+	echo
+	echo "------"
+	echo "|url?|"
+	echo "------"
+	echo
+	read url
+	echo "  url =          {${url}}" >> $BIB_FILE
+}
+
+new_book() {
+	echo
+	echo "------"
+	echo "|Tag?|"
+	echo "------"
+	echo
+	read tag
+	echo -e "\n@BOOK{${tag}," >> $BIB_FILE
+	echo
+	echo "---------"
+	echo "|Author?|"
+	echo "---------"
+	echo
+	read author
+	echo "  author =       {${author}}," >> $BIB_FILE
+	echo
+	echo "--------"
+	echo "|Title?|"
+	echo "--------"
+	echo
+	read title
+	echo "  title =        {${title}}," >> $BIB_FILE
+	echo
+	echo "---------"
+	echo "|Series?|"
+	echo "---------"
+	echo
+	read series
+	echo "  series =       {${series}}," >> $BIB_FILE
+	echo
+	echo "---------"
+	echo "|Volume?|"
+	echo "---------"
+	echo
+	read volume
+	echo "  volume =       {${volume}}," >> $BIB_FILE
+	echo
+	echo "-------"
+	echo "|Year?|"
+	echo "-------"
+	echo
+	read year
+	echo "  year =         {${year}}," >> $BIB_FILE
+	echo
+	echo "----------"
+	echo "|Edition?|"
+	echo "----------"
+	echo
+	read edition
+	echo "  edition =      {${edition}}," >> $BIB_FILE
+	echo
+	echo "------------"
+	echo "|Publisher?|"
+	echo "------------"
+	echo
+	read publisher
+	echo "  publisher =    {${publisher}}" >> $BIB_FILE
+}
+
+case $LIT_TYPE in
+	"paper") new_paper;;
+	"book") new_book;;
+	*) echo "This type of literature is not yet supported.";;
+esac
+sed -i '/{}/d' $BIB_FILE
+sed -i '$s/,//g' $BIB_FILE
+echo "}" >> $BIB_FILE
+for BiB in $(find . -type f -name "*.bib" | tail -n +2); do
+	cp $BIB_FILE $BiB
+done
+echo
+echo "---------------------"
+echo "|New bib item added:|"
+echo "---------------------"
+echo
+awk -v RS='\n\n' '{item[NR]=$0} END{print item[NR]}' $BIB_FILE
+exit 0

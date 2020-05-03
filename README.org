@@ -1,7 +1,7 @@
 * "Mendelessly"
   My academic literature management (reading, organizing, note-taking).
 
-* Softwares
+* Dependencies
   Although all the scripts are (technically "IS" at the moment, I
   know) and will be written with the assumption that emacs/org-mode is
   being used, allowing them to work with other markup formats should
@@ -19,15 +19,27 @@
 
 * Usage
 ** org-lit-sync
+   A script that helps track literature reviewing
    - a project folder
-     - literature pdf's
+     - literature pdf/djvu's
      - org-lit-sync
      - a .org file with the last heading as "Unread" (you might wanna
        check out [[https://www.youtube.com/watch?v=LFO2UbzbZhA][this video]] to get the hang)
+     - here is an example of recursive folder listing
+       #+BEGIN_SRC shell
+       .
+       ├── literature
+       │   ├── book-1.pdf
+       │   ├── book-2.djvu
+       │   ├── paper-1.pdf
+       │   └── paper-2.pdf
+       ├── literature-review.org
+       └── org-lit-sync
+       #+END_SRC
    - run the script with the new added pdf as the single argument
-     #+BEGIN_SRC shell
+     #+BEGIN_EXAMPLE
      ./org-lit-sync year-author-title.pdf
-     #+END_SRC
+     #+END_EXAMPLE
      it will
      - append the new pdf at the bottom of the .org file under the
        "Unread" heading
@@ -37,9 +49,9 @@
          papers with format: "author-year-title.pdf" (using macro to bulk rename)
    - recommendations
      - I have my ranger equipped with a keybinding
-       #+BEGIN_SRC shell
+       #+BEGIN_EXAMPLE
        map mpo shell mv -v %s /**/project-folder && cd /**/project-folder && ./org-lit-sync %s
-       #+END_SRC
+       #+END_EXAMPLE
        so that the flow goes as
        1. download the pdf
        2. change the name following the pattern
@@ -47,3 +59,98 @@
        4. and it's ready in the .org file with unread heading and
          well-sorted
      - You can of course use shell aliases or something like that
+** new-bib
+   A command line prompt program that helps generate latex bib items
+   - a main folder that contains
+     - different project folders with corresponding bib and tex files
+     - the main reference bib file
+     - the *new-bib* script
+     - here is an example of recursive folder listing
+       #+BEGIN_SRC shell
+       .
+       ├── project-1
+       │   ├── Makefile
+       │   ├── project-1.bib
+       │   └── project-1.tex
+       ├── project-2
+       │   ├── Makefile
+       │   ├── project-2.bib
+       │   └── project-2.tex
+       ├── new-bib
+       └── references.bib
+       #+END_SRC
+   - run the script with the bib type as the single argument. 
+     #+BEGIN_SRC shell
+       ./new-bib paper
+     #+END_SRC
+     /NB: I only wrote two types of bib items, paper and book, due to my needs. If you take a look at the script you will soon realize it's trivial to modify/add different types of bib item yourself)/
+   - features
+     - automatically gets rid of empty bib descriptions. In other
+       words, if you don't know a description, just leave it blank by
+       hitting enter. The script is also gonna make sure that the last
+       description does NOT end with a comma.
+     - automatically finds all bib files in all the subdirectories
+       (recursively) and replace them with the updated main bib file
+       *references.bib*.
+     - outputs the newly added bib item at the end of the prompts for
+       a quick check.
+     - an example:
+       #+BEGIN_EXAMPLE
+	 username@host project-folder % ./new-bib book
+
+	 ------
+	 |Tag?|
+	 ------
+
+	 Rudin:1976
+
+	 ---------
+	 |Author?|
+	 ---------
+
+	 Rudin, Walter
+
+	 --------
+	 |Title?|
+	 --------
+
+	 Principles of Mathematical Analysis
+
+	 ---------
+	 |Series?|
+	 ---------
+
+
+
+	 ---------
+	 |Volume?|
+	 ---------
+
+	 1976
+
+	 ----------
+	 |Edition?|
+	 ----------
+
+	 3
+
+	 ------------
+	 |Publisher?|
+	 ------------
+
+	 McGraw-Hill
+
+	 ---------------------
+	 |New bib item added:|
+	 ---------------------
+
+	 @BOOK{Rudin:1976,
+	   author =       {Rudin, Walter},
+	   title =        {Principles of Mathematical Analysis},
+	   year =         {1976},
+	   edition =      {3},
+	   publisher =    {McGraw-Hill}
+	 }
+
+       #+END_EXAMPLE
+     
