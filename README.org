@@ -2,13 +2,12 @@
   My academic literature management (reading, organizing, note-taking).
 
 * Dependencies
-  Although all the scripts are (technically "IS" at the moment, I
-  know) and will be written with the assumption that emacs/org-mode is
-  being used, allowing them to work with other markup formats should
-  be trivial to achieve with zero to a small number of
-  modifications. That said, emacs/org-mode offers an insanely
-  efficient system for editing, organizing, note-taking, ASO, which is
-  the only reason for these scripts to be marginally yet
+  Although all the scripts are and will be written with the assumption
+  that emacs/org-mode is being used, allowing them to work with other
+  markup formats should be trivial to achieve with zero to a small
+  number of modifications. That said, emacs/org-mode offers an
+  insanely efficient system for editing, organizing, note-taking, ASO,
+  which is the only reason for these scripts to be marginally yet
   significantly useful, as far as I can tell.
 
   Now here are the softwares I use for literature management in a
