@@ -6,7 +6,7 @@
   that emacs/org-mode is being used, allowing them to work with other
   markup formats should be trivial to achieve with zero to a small
   number of modifications. That said, emacs/org-mode offers an
-  insanely efficient system for editing, organizing, note-taking, ASO,
+  insanely efficient system for editing, organizing, note-taking, 
   which is the only reason for these scripts to be marginally yet
   significantly useful, as far as I can tell.
 
@@ -14,7 +14,9 @@
   daily basis:
   - editor: emacs, especially org-mode
   - file manager: ranger (optional)
-  - pdf reader: zathura (optional) 
+    - with shortcut (see below) configured for my purpose. Of course
+      this can be achieved more or less equally by bash/zsh alias
+      functions.
 
 * Usage
 ** org-lit-sync
@@ -27,12 +29,14 @@
      - here is an example of recursive folder listing
        #+BEGIN_SRC shell
        .
-       ├── literature
+       ├── lit
        │   ├── book-1.pdf
        │   ├── book-2.djvu
        │   ├── paper-1.pdf
        │   └── paper-2.pdf
-       ├── literature-review.org
+       ├── org
+       │   ├── literature-review.org
+       │   └── suborgs
        └── org-lit-sync
        #+END_SRC
    - run the script with the new added pdf as the single argument

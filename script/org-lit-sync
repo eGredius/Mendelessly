@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# the literature name as the first argument
+LIT_NAME=$1
+
+SUBORG_NAME=$2
+
+if [ -z "$SUBORG_NAME" ]; then
+	# the main literature review org file asigned as FILE_NAME
+	FILE_NAME=$(ls ../org -l | awk -F' ' '/\.org/ {print "../org/"$9}');
+	# the line number of heading "Unread" asigned as UNREAD
+	UNREAD=$(grep -n 'Unread' $FILE_NAME | cut -d ':' -f 1);
+	# append new org item into FILE_NAME
+	echo $LIT_NAME | awk -F'.' '{print "** [[../lit/" $0 "][" $1 "]]"}' >> $FILE_NAME;
+	# sort chronically all the unread literature
+	{ head -n $UNREAD $FILE_NAME && awk -v unread_lin_num=$UNREAD 'NR>unread_lin_num' $FILE_NAME | sort -r; } 1<> $FILE_NAME;
+else
+	# the suborg file asigned as FILE_NAME
+	FILE_NAME="../org/suborgs/${SUBORG_NAME}.org"
+	# the line number of heading "Unread" asigned as UNREAD
+	UNREAD=$(grep -n 'Unread' $FILE_NAME | cut -d ':' -f 1);
+	# append new org item into FILE_NAME
+	echo $LIT_NAME | awk -F'.' '{print "** [[../../lit/" $0 "][" $1 "]]"}' >> $FILE_NAME;
+	# sort chronically all the unread literature
+	{ head -n $UNREAD $FILE_NAME && awk -v unread_lin_num=$UNREAD 'NR>unread_lin_num' $FILE_NAME | sort -r; } 1<> $FILE_NAME;
+fi

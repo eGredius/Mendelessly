@@ -1,0 +1,5 @@
+#!/bin/sh
+BiB_FILE=$(ls -l | awk -F' ' '/\.bib/ {print $9}')
+for BiB in $(find . -type f -name '*.bib' | tail -n +2); do
+	cp $BiB_FILE $BiB
+done

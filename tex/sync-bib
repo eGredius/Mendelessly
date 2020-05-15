@@ -1,0 +1,4 @@
+#!/bin/sh
+BiB_FILE=$(ls -l | awk -F' ' '/\.bib/ {print $9}')
+pkill -f "entr bib_cp" && exit
+echo $BiB_FILE | entr -p ./copy-bib
