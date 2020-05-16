@@ -159,3 +159,4 @@
 
 * Upcoming features
   - [ ] Genealogy in your research circle
+  - [ ] Latex templates (specifying packages) generation
