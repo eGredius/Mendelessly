@@ -159,4 +159,8 @@
 
 * Upcoming features
   - [ ] Genealogy in your research circle
+    - Genealogy data in a single file
+    - CLI prompt outputs tree and other info based on (fuzzy) arguments 
   - [ ] Latex templates (specifying packages) generation
+    - Package selection guide
+    - Makefile guide
