@@ -156,4 +156,6 @@
 	 }
 
        #+END_EXAMPLE
-     
+
+* Upcoming features
+  - [ ] Genealogy in your research circle
